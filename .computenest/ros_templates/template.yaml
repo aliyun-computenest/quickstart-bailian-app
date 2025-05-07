@@ -275,7 +275,7 @@ Resources:
           - Ref: EcsVpc
           - Ref: VpcId
       SecurityGroupIngress:
-        - PortRange: 80/80
+        - PortRange: 8000/8000
           Priority: 1
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: tcp
@@ -392,11 +392,32 @@ Metadata:
         Label:
           default: 配置专有网络
     QuickDeployConfig:
+      PackageFields:
+        - Key: EcsInstanceType
+        - Key: SystemDiskCategory
+          Label:
+            zh-cn: 系统盘
+            en: System Disk
+          Value: '${SystemDiskCategory} / ${SystemDiskSize} GB'
+        - Key: InternetChargeType
+          Label:
+            zh-cn: 公网带宽
+            en: Internet Charge Type
+          Value: '${InternetChargeType } / ${InternetMaxBandwidthOut} Mbps'
+        - Key: PayType
+          Label:
+            zh-cn: 付费类型
+            en:  Pay Type
+          Value: '${PayType}'
+        - Key: PayPeriodUnit
+          Label:
+            zh-cn: 付费时长
+            en: Pay Period
+          Value: '${PayPeriod} ${PayPeriodUnit}'
       PredefinedParameters:
         - Name: 热卖套餐，特价99元/年（限购1台）
           Parameters:
-            EcsInstanceType:
-              - ecs.e-c1m1.large
+            EcsInstanceType: ecs.e-c1m1.large
             SystemDiskCategory: cloud_essd_entry
             SystemDiskSize: 40
             InternetChargeType: PayByBandwidth
@@ -417,8 +438,7 @@ Metadata:
           Description: 固定带宽不限流量，新老同享，上云首选！
         - Name: 尝鲜套餐，只需0.3元/小时
           Parameters:
-            EcsInstanceType:
-              - ecs.e-c1m1.large
+            EcsInstanceType: ecs.e-c1m1.large
             SystemDiskCategory: cloud_essd_entry
             SystemDiskSize: 40
             InternetChargeType: PayByBandwidth
@@ -436,7 +456,7 @@ Metadata:
             - PayPeriod
             - PayType
           Type: Normal
-          Description: 可用300元学生专属代金券抵扣！
+          Description: 可用300元学生专属代金券抵扣！<a href="https://university.aliyun.com" target="_blank">立即领取</a>
         - Name: 自定义套餐
           Parameters: {}
           OrderList:
