@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="计算巢是阿里云开放给企业应用服务商的服务管理平台。服务商能够在计算巢上发布私有化部署服务，为其客户提供云上软件一键部署的能力；同时也支持全托管模式的服务，赋能服务商托管其客户资源。">
+  <title>Home - Aliyun 计算巢 x Demo</title>
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  
+
+  
+
+  
+  
+
+  
+    <script src="search/main.js"></script>
+  
+
+  
+
+  <script src="js/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="logo">
+          <img src="./img/logo-2x.png">
+        </div>
+        <div class="nav-list">
+          <ul>
+          
+              <li><a href="#_1">简介</a></li>
+              
+          
+              <li><a href="#_2">计费说明</a></li>
+              
+          
+              <li><a href="#ram">RAM账号所需权限</a></li>
+              
+          
+              <li><a href="#_3">部署服务</a></li>
+              
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="content theme-github">
+      
+      <div class="content-inner">        
+        
+        <h2 id="_1">简介</h2>
+<p>大语言模型（LLM）作为自然语言处理的核心技术能力，能在文档中为知识问答、内容生成、大数据清洗、办公流程自动化等场景挖掘出更多的价值，极大降低了普通人对于专业词汇多、结构复杂、图文混合的文档内容阅读门槛。但文档的处理十分具有挑战性，特别是在 PDF 格式下，多种合同、试卷、论文、财报、简历、报告场景中，对于输入给大模型所需要的就不仅仅是文本内容，同时包括表格内容、公式文本、图片内容处理，以及无关内容的过滤。</p>
+<p>对于不同格式的文档输入，如何实现将文档智能和检索增强生成（RAG）结合起来构建强大的 LLM 知识库，关键是如何清洗文档内容，将文档内容向量化，并最终在问答内容召回后，通过特定的 Prompt，提供给 LLM足够的上下文信息，以此来满足对企业级文档类型知识库的问答处理。 本服务将基于文档智能的文档解析处理，结合百炼平台构建单文档问答应用。</p>
+<h2 id="_2">计费说明</h2>
+<p>本服务在阿里云上的费用主要涉及：
+* 所选GPU云服务器的规格
+* 磁盘容量
+* 公网带宽</p>
+<p>计费方式：按量付费（小时）或包年包月
+预估费用在创建实例时可实时看到。</p>
+<p>百炼模型调用费用:
+* 当您首次开通百炼时，平台会自动为您发放各模型的新人专属免费额度，详情请看<a href="https://help.aliyun.com/zh/model-studio/new-free-quota?spm=a2c4g.11186623.help-menu-2400256.d_4_1.6dea55efFQCijR#view-quota">百炼新人免费额度</a>。</p>
+<h2 id="ram">RAM账号所需权限</h2>
+<table>
+<thead>
+<tr>
+<th>权限策略名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AliyunECSFullAccess</td>
+<td>管理云服务器服务（ECS）的权限</td>
+</tr>
+<tr>
+<td>AliyunVPCFullAccess</td>
+<td>管理专有网络（VPC）的权限</td>
+</tr>
+<tr>
+<td>AliyunROSFullAccess</td>
+<td>管理资源编排服务（ROS）的权限</td>
+</tr>
+<tr>
+<td>AliyunComputeNestUserFullAccess</td>
+<td>管理计算巢服务（ComputeNest）的用户侧权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">部署服务</h2>
+<ol>
+<li>
+<p>单击<a href="https://computenest.console.aliyun.com/service/simple/deploy?ServiceId=service-fb94c3200f9b4631a73b">部署链接</a>，进入服务实例部署界面，根据界面提示，填写参数。
+    <img alt="" src="deploy_1.jpg" /></p>
+</li>
+<li>
+<p>确认订单完成后点击<strong>立即创建</strong>。</p>
+</li>
+<li>
+<p>等待部署完成后进入服务实例详情。
+    <img alt="result_1.jpg" src="result_1.jpg" /></p>
+</li>
+<li>
+<p>点击公网访问地址使用服务。
+    <img alt="result_2.jpg" src="result_2.jpg" /></p>
+</li>
+</ol>
+        
+      </div>
+
+      <div class="copyrights">© 2009-2022 Aliyun.com 版权所有</div>
+    </div>
+  </div>
+  
+  <!--
+  MkDocs version      : 1.6.1
+  Docs Build Date UTC : 2025-07-08 09:03:19.675000+00:00
+  -->
+</body>
+</html>
