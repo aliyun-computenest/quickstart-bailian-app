@@ -173,6 +173,8 @@ Parameters:
     MinLength: 8
     MaxLength: 30
     AssociationProperty: ALIYUN::ECS::Instance::Password
+    AssociationPropertyMetadata:
+      Random: true
   ZoneId:
     Type: String
     Label:
@@ -223,24 +225,11 @@ Parameters:
             - ExistingVPC
             - ${VpcOption}
   AppApiKey:
-    NoEcho: true
     Type: String
     Label:
       en: API-KEY of bailian
       zh-cn: 百炼API-KEY
-    Description:
-      en: API-KEY of the bailian platform for accessing bailian platform services. You can access it from https://bailian.console.aliyun.com/?apiKey=1#/api-key
-      zh-cn: 访问百炼平台的<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">我的API-KEY</a>页面， 创建新的API-KEY或查看已有的 API-KEY，注意末尾不能有空格
-    AllowedPattern: ^sk-[a-z0-9]{32}$
-  BailianWorkspaceId:
-    Type: String
-    Label:
-      en: Work space Id of bailian
-      zh-cn: 百炼平台业务空间ID
-    Description:
-      en: Work space Id of bailian. You can access it from https://bailian.console.aliyun.com/?apiKey=1#/api-key
-      zh-cn: 可以在百炼平台<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key"target="_blank">我的API-KEY</a>中获取百炼平台业务空间ID
-    AllowedPattern: ^llm-[a-z0-9]{16}$
+    AssociationProperty: ALIYUN::Bailian::ApiKey::ApiKeyInfo
 Resources:
   # 新建vpc
   EcsVpc:
@@ -332,16 +321,25 @@ Resources:
           - InstanceGroup
           - InstanceIds
       CommandContent:
-        Fn::Sub: |-
-          #!/bin/bash
-          cat << EOF >> ~/.bash_profile
-          export UPLOAD_FOLDER="uploads"
-          export DASHSCOPE_API_KEY="${AppApiKey}"
-          export DASHSCOPE_WORKSPACE_ID="${BailianWorkspaceId}"
-          export ROS_DEPLOY=true
-          EOF
-          source ~/.bash_profile
-          curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/docmind-rag/install.sh|bash
+        Fn::Sub:
+          - |-
+            #!/bin/bash
+            cat << EOF >> ~/.bash_profile
+            export UPLOAD_FOLDER="uploads"
+            export DASHSCOPE_API_KEY="${AppApiKey}"
+            export DASHSCOPE_WORKSPACE_ID="${BailianWorkspaceId}"
+            export ROS_DEPLOY=true
+            EOF
+            source ~/.bash_profile
+            curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/docmind-rag/install.sh|bash
+          - AppApiKey:
+              Fn::Select:
+                - Key
+                - Ref: AppApiKey
+            BailianWorkspaceId:
+              Fn::Select:
+                - WorkspaceId
+                - Ref: AppApiKey
       Type: RunShellScript
       Timeout: 3000
       Sync: true
@@ -379,7 +377,6 @@ Metadata:
           default: 服务器基础配置
       - Parameters:
           - AppApiKey
-          - BailianWorkspaceId
         Label:
           default: 配置百炼
       - Parameters:
@@ -472,7 +469,6 @@ Metadata:
       CustomFields:
         - Key: InstancePassword
         - Key: AppApiKey
-        - Key: BailianWorkspaceId
       CostRelatedKeys:
         - RegionId
         - PayPeriod
